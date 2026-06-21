@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "English Pronunciation-Guide Layer",
+  "version": "1.0",
+  "description": "Overlays a peelable RP pronunciation-guide spelling on English web pages. Hover any word to see the original.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": { "default_popup": "popup.html", "default_title": "Pronunciation Guide" },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["content.css"],
+    "run_at": "document_idle"
+  }],
+  "web_accessible_resources": [{ "resources": ["base-dict.json"], "matches": ["<all_urls>"] }]
+}
