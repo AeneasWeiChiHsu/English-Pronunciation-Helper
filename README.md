@@ -117,12 +117,46 @@ same-stress cases. See `data/heteronyms.json`.
 
 ---
 
+## Phase 2 — context-aware heteronyms · 異音字情境消歧
+
+The base dictionary leaves true heteronyms (`record` N/V, `read` past/present)
+**bare**, because their pronunciation needs sentence context. Phase 2 resolves
+them with a **gated** pipeline — cheap layers first, the LLM only as a last resort:
+
+```
+article → segment → gate → disambiguate → render
+                    (tables)  ├─ spaCy POS   → stress-shift heteronyms, free
+                              └─ gemma2:2b   → the residual (read/live/wind…)
+```
+
+~95% of tokens resolve by table lookup; of the heteronyms, spaCy handles the
+stress-shift majority and a local **gemma2:2b** (via Ollama) handles only the
+vowel residual. No long-term memory — each sentence is independent.
+
+```bash
+pip install -r phase2/requirements.txt && python -m spacy download en_core_web_sm
+python phase2/run.py phase2/test-generated.txt          # gemma2:2b, advanced density
+MODEL=gemma3:12b python phase2/run.py <article>         # calibration vs 12b
+```
+
+**Validated end-to-end** on a synthetic, bias-free test passage: gemma2:2b
+correctly disambiguates read/live/lead/wind/wound/close (both senses); **2b vs
+12b agree on 93.5% of decisions** → the small local model is sufficient. Details
+in `phase2/README.md`.
+
+基準字典把真異音字(`record` 名/動、`read` 過去/現在)留**素顏**,因為要靠句子情境。
+Phase 2 用**閘控**管線消歧:先查表、spaCy 判詞性,只有母音殘量才丟本機 **gemma2:2b**。
+合成、無選文偏差的測試驗證:2b 與 12b 決策一致率 **93.5%** → 小模型就夠。
+
+---
+
 ## Repo structure · 專案結構
 
 ```
 extension/   Chrome/Edge MV3 extension (self-contained, load-unpacked)
 src/         engine.py (rules) + build_full.py (dictionary builder)
 data/        outliers.json, heteronyms.json (review data)
+phase2/      context-aware heteronym disambiguation (spaCy + gemma2:2b)
 spec/        spelling-system.md (the full rule table)
 ```
 
