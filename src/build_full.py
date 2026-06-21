@@ -23,10 +23,18 @@ def stress_idx(ph):
             k += 1
     return -1
 
+def n_syl(ph):
+    return sum(1 for p in ph if engine.strip_stress(p) in engine.VOWELS_AR)
+
 def is_heteronym(prons):
-    """machine rule: TRUE heteronym if primary stress falls on different syllables."""
-    idxs = {stress_idx(p) for p in prons}
-    return len(idxs) > 1
+    """TRUE stress-shift heteronym requires: >=2 syllables, and among the
+    pronunciations that actually carry a primary stress, the stress lands on
+    >=2 different syllable positions. This excludes monosyllabic function words
+    (the/a/to) and weak/strong-form-only variants (because)."""
+    if max(n_syl(p) for p in prons) < 2:
+        return False
+    positions = {stress_idx(p) for p in prons if stress_idx(p) != -1}
+    return len(positions) > 1
 
 d = cmudict.dict()
 words = {}
