@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.1"
+RULE_VERSION = "v1.2"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -272,6 +272,10 @@ def mark_consonant(gl, ps, path, idx):
     if gl=="su":
         if "ZH" in ps: return "ßu"
         if "SH" in ps: return "şu"
+        return gl
+    if gl=="si":
+        if "ZH" in ps: return "ßi"      # vißion, decißion, occaßion  (-sion /ʒ/)
+        if "SH" in ps: return "şi"      # tènşion, mànşion, apprehènşion  (-sion /ʃ/)
         return gl
     if gl=="c":
         if "S" in ps: return "ç"
