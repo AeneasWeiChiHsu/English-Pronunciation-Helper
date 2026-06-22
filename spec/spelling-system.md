@@ -108,7 +108,7 @@
 | /tʃ/ | **ċh**（native）/ **çh**（法）/ **ṫ**（-ture） | ċhild; maçhine; tèmperaṫure | |
 | /k/（ch） | **čh** | čhemistry, sčhōol | 希臘 χ |
 | /dʒ/ | **ǧ**（軟 g caron）/ **ġ**（硬 g 例外）/ **ð**（dge）/ j 素顏 | màǧic; ġift; jûðge; jump | ǧ=caron,別與 /ʒ/ 的 ǵ(acute) 混 |
-| /ʒ/ | **ß**（s 系）/ **ǵ**（拼 g）/ **ź**（拼 z） | meaßure, vißion, expōßure; garåǵe, beiǵe; aźure, seiźure | ß→s、ǵ→g、ź→z |
+| /ʒ/ | **ß**（s 系）/ **ǵ**（拼 g）/ **ź**（拼 z） | mèaßure, vìßion, expōßure; garåǵe, bëiǵe; àźure, sēiźure | ß→s、ǵ→g、ź→z |
 | /z/（s 偷念） | **ś**（s-acute） | rīśiñg, plēaśe, rōśe, dogś | 剝記號 ś→s |
 | /s/ 軟 c | **ç** | çēase（/s/）; spèçial（/ʃ/） | ç=軟 c,值依位置 |
 | /k/ 硬 c | 素顏 | cat, cûp, cår | 預設,不標 |

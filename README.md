@@ -18,7 +18,7 @@ It overlays diacritics on real English spelling. Hover any word to see the origi
 
 ```
 plain :  The psychologist measured exposure to social media
-layer :  The psȳčhòloǧist mèaßureď expōßure to sōçial mēdia
+layer :  Tħe psȳčhòloǧist mèaßureď expōßure tö sōçial mēdia
 ```
 
 The marks encode **stress** (grave: `ò`), **long vowels** (macron = letter's name `ā ē ī ō ū`,
