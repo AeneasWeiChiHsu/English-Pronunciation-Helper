@@ -16,6 +16,10 @@ def gate(tokens, base_words, het_map, density="a"):
         w = t["text"]
         lw = w.lower().strip("'")
         rec = dict(t)
+        if len(w) > 1 and w.isupper():       # acronym / all-caps (NASA, FBI, USA) -> leave alone
+            rec["action"] = "bare"
+            out.append(rec)
+            continue
         if lw in het_map:
             rec["action"] = "heteronym"
             rec["het"] = het_map[lw]

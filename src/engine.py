@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.0"
+RULE_VERSION = "v1.1"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -42,6 +42,7 @@ CORR = {
     "t":{("T",),("D",),("CH",),("SH",),()}, "v":{("V",)}, "w":{("W",),()},
     "x":{("K","S"),("G","Z"),("Z",),("K","SH")}, "z":{("Z",),("ZH",),("S",)},
     # consonant digraphs / clusters
+    "ss":{("S",),("SH",),("Z",)},
     "th":{("TH",),("DH",)}, "sh":{("SH",)}, "ch":{("CH",),("K",),("SH",)}, "ph":{("F",)},
     "gh":{("F",),("G",),()}, "ck":{("K",)}, "ng":{("NG",),("N","G")}, "qu":{("K","W"),("K",)},
     "wh":{("W",),("HH",)}, "tch":{("CH",)}, "dge":{("JH",)}, "wr":{("R",)}, "kn":{("N",)},
@@ -260,9 +261,10 @@ def mark_consonant(gl, ps, path, idx):
         return "ss"
     if gl in ("ti","ci","ssi","sci"):
         if "SH" in ps:
-            # render: keep letters, put ť on t / ç on c
+            # render: keep letters, put ť on t / ç on c / ş on the 2nd s of ss
             if gl=="ti": return "ťi"
-            if gl in ("ci","sci","ssi"): return gl.replace("c","ç",1)
+            if gl=="ssi": return "sşi"          # ss-family /ʃ/: prèsşure, mìsşion
+            return gl.replace("c","ç",1)        # ci, sci
         return gl
     if gl=="tu":
         if "CH" in ps: return "ṫu"
