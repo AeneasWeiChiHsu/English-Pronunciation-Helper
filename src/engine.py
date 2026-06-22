@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> ç´ é¡
 """
 import re
 
-RULE_VERSION = "v1.7"
+RULE_VERSION = "v1.8"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -43,6 +43,11 @@ CORR = {
     "x":{("K","S"),("G","Z"),("Z",),("K","SH")}, "z":{("Z",),("ZH",),("S",)},
     # consonant digraphs / clusters
     "ss":{("S",),("SH",),("Z",)},
+    # doubled consonants -> single phoneme (the 2nd letter is silent; without these
+    # it aligns as a deletion and the cost can exceed the build threshold: office, efficient)
+    "ff":{("F",)}, "pp":{("P",)}, "tt":{("T",)}, "dd":{("D",)}, "mm":{("M",)},
+    "nn":{("N",)}, "gg":{("G",),("JH",)}, "bb":{("B",)}, "rr":{("R",)}, "ll":{("L",)},
+    "zz":{("Z",)}, "cc":{("K",),("K","S")},
     "th":{("TH",),("DH",)}, "sh":{("SH",)}, "ch":{("CH",),("K",),("SH",)}, "ph":{("F",)},
     "gh":{("F",),("G",),()}, "ck":{("K",)}, "ng":{("NG",),("N","G")}, "qu":{("K","W"),("K",)},
     "wh":{("W",),("HH",)}, "tch":{("CH",)}, "dge":{("JH",)}, "wr":{("R",)}, "kn":{("N",)},
