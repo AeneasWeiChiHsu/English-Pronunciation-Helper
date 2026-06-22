@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.4"
+RULE_VERSION = "v1.5"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -122,6 +122,7 @@ CIRC = {"a":"â","e":"ê","i":"î","o":"ô","u":"û","y":"ŷ"}
 TILDE = {"a":"ã","e":"ẽ","i":"ĩ","o":"õ","u":"ũ","y":"ỹ"}
 RING = {"a":"å"}
 BREVE = {"a":"ă"}
+DIAERESIS = {"i":"ï","y":"ÿ"}   # /iː/ on i/y (machine, ski, happy) — distinct from ī/ȳ (=/aɪ/)
 
 def mark_vowel_letters(g, ph_list, stress, is_poly, letters_before, letters_after, full):
     """Return marked grapheme for a vowel chunk. ph_list = stripped phones (no R)."""
@@ -147,12 +148,15 @@ def mark_vowel_letters(g, ph_list, stress, is_poly, letters_before, letters_afte
     marked = False
     # ----- quality marks (self-imply stress) -----
     if v=="IY":
+        # /iː/: ē on letter e (e's name = /iː/); ï/ÿ on i/y so it isn't read as ī/ȳ (=/aɪ/)
         if base_letter=="y" and stress==0:
             marked=False
-        elif full:
-            put(MACRON_LETTERNAME); marked=True
-        elif stress in (1,2):
-            put(MACRON_LETTERNAME); marked=True
+        elif full or stress in (1,2):
+            if base_letter in DIAERESIS:
+                out[vi]=DIAERESIS[base_letter]
+            else:
+                put(MACRON_LETTERNAME)        # e -> ē
+            marked=True
     elif v=="EY":
         put(MACRON_LETTERNAME); marked=True             # ā
     elif v=="AY":
