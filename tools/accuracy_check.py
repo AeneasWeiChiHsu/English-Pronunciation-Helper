@@ -38,7 +38,7 @@ CHECKS = [
     ("/ɔɪ/ OY",              lambda s,p: "OY" in s,
                              lambda o: "œ" in o),
     ("name vowels iy/ey/ay/ow", lambda s,p: any(x[:2] in ("IY","EY","AY","OW") and x[-1] in "12" for x in p),
-                             lambda o: has_any(o, MACRONS) or has_any(o, "ïÿ")),
+                             lambda o: has_any(o, MACRONS) or has_any(o, "ïÿë")),
     ("/uː/ UW",              lambda s,p: "UW" in s,
                              lambda o: "ö" in o or has_any(o, MACRONS)),
     ("/aʊ/ AW (ow-gap known)", lambda s,p: "AW" in s,

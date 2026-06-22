@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.5"
+RULE_VERSION = "v1.6"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -158,7 +158,10 @@ def mark_vowel_letters(g, ph_list, stress, is_poly, letters_before, letters_afte
                 put(MACRON_LETTERNAME)        # e -> ē
             marked=True
     elif v=="EY":
-        put(MACRON_LETTERNAME); marked=True             # ā
+        if base_letter=="e":
+            out[vi]="ë"; marked=True                     # /eɪ/ on e (they, steak) — not ē (=/iː/)
+        else:
+            put(MACRON_LETTERNAME); marked=True          # ā (face)
     elif v=="AY":
         put(MACRON_LETTERNAME); marked=True             # ī (on i/y)
     elif v=="OW":

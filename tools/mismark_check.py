@@ -18,7 +18,7 @@ COST = 2.6
 
 # glyph -> the phoneme it is supposed to mean (letter-name macrons)
 MACRON_SOUND = {"ā": "EY", "ī": "AY", "ō": "OW", "ē": "IY", "ū": "UW", "ȳ": "AY",
-                "ï": "IY", "ÿ": "IY"}
+                "ï": "IY", "ÿ": "IY", "ë": "EY"}
 
 bad = {g: [0, []] for g in MACRON_SOUND}
 present = {g: 0 for g in MACRON_SOUND}
