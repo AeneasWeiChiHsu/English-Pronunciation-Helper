@@ -21,12 +21,13 @@ plain :  The psychologist measured exposure to social media
 layer :  The psȳčhòloǧist mèaßureď expōßure to sōçial mēdia
 ```
 
-The marks encode **stress** (grave: `ò`), **long vowels** (macron: `ē ī ō`), **/ʌ/** (`û ô`),
-**voiced th** (`tħ`), **s as /z//ʃ//ʒ/** (`ś ş ß`), **soft c/g** (`ç ǧ`), and more.
+The marks encode **stress** (grave: `ò`), **long vowels** (macron = letter's name `ā ē ī ō ū`,
+diaeresis = the other long vowel `ï ÿ` /iː/, `ë` /eɪ/), **/aʊ/** (`oü` / `ŵ` for *how→hoŵ*),
+**/ʌ/** (`û ô`), **voiced th** (`tħ`), **s/z/ʒ** (`ś ş ß`), **soft c/g and /ʒ/** (`ç ǧ ǵ ź`), and more.
 Strip every mark and you get the bookstore spelling back, letter for letter.
 
-記號標的是**重音**(grave:`ò`)、**長母音**(macron:`ē ī ō`)、**/ʌ/**(`û ô`)、
-**濁 th**(`tħ`)、**s 的 /z//ʃ//ʒ/ 三值**(`ś ş ß`)、**軟 c/g**(`ç ǧ`)等等。
+記號標的是**重音**(grave:`ò`)、**長母音**(macron=唸本名 `ā ē ī ō ū`、diaeresis=另一個長音 `ï ÿ`=/iː/、`ë`=/eɪ/)、
+**/aʊ/**(`oü` / `ŵ`,如 *how→hoŵ*)、**/ʌ/**(`û ô`)、**濁 th**(`tħ`)、**s 三值**(`ś ş ß`)、**軟 c/g 與 /ʒ/**(`ç ǧ ǵ ź`)等等。
 把記號全部剝掉,就一字不差地還原成書店裡的拼法。
 
 ---
@@ -76,18 +77,26 @@ then peel it off — like macrons in *Wheelock's Latin* or zhuyin in children's 
 
 ---
 
-## Coverage · 覆蓋率 (v1.0)
+## Coverage & accuracy · 覆蓋率與正確率 (v1.7)
 
-| Common words · 常用字 | Marked · 有記號 |
-|---|---|
-| top 1,000 | ~66% |
-| top 10,000 | ~75% |
+**Peelability — the supreme invariant — holds at 100%:** all 95,757 dictionary
+entries strip back to the exact original spelling, letter for letter (audited every build).
 
-The rest are left **unmarked** on purpose (high-frequency words with strong visual precedent,
-true heteronyms, or low-confidence alignments). The system **never guesses** — when unsure, it shows plain English.
+**Rule-conformance accuracy** (does each sound that must be marked actually get marked,
+across ~94k words): every markable sound is at **100%** — `/ð/ /ŋ/ /ʌ/ /ɜː/ /ʒ/ /ɔɪ/ /uː/ /aʊ/`
+and the whole long-vowel family — **except `/ʃ/` at 99.1%** (the residual is `xi`/`xu` in
+*anxious*/*complexion*, which have no `s` letter to decorate — a true peelability limit).
 
-其餘**刻意素顏**(高頻且字形熟悉的字、真異音字、或低信心對齊)。系統**從不亂猜**——
-不確定時就給你純英文。
+可剝離(最高法則)維持 **100%**(95,757 字全可逆);**標記正確率**:每個該標的音都 **100%**,
+唯 `/ʃ/` 99.1%(殘量是 *anxious* 的 `xi`,無 s 可標的物理極限)。
+
+Words the dictionary can't render with confidence (rare alignments, true heteronyms needing
+context) are left **unmarked** — the system **never guesses**; when unsure, it shows plain English.
+
+字典無法有把握渲染的字(罕見對齊、需上下文的真異音字)一律**素顏**——系統**從不亂猜**。
+
+> Audited by `tools/perf_test.py` (peelability), `tools/accuracy_check.py` (under-marking),
+> and `tools/mismark_check.py` (wrong-mark). Rebuild: `python src/build_full.py`.
 
 ---
 
@@ -158,6 +167,8 @@ src/         engine.py (rules) + build_full.py (dictionary builder)
 data/        outliers.json, heteronyms.json (review data)
 phase2/      context-aware heteronym disambiguation (spaCy + gemma2:2b)
 spec/        spelling-system.md (the full rule table)
+tools/       perf_test, accuracy_check, mismark_check (audits) + corpus
+epl.py       engine test bench — sentence in → marked out, REPL, peel-check
 ```
 
 ---
