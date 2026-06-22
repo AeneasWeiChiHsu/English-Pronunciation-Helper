@@ -3,6 +3,8 @@
 > **一層可以戴上、也可以摘下的發音鷹架。**
 > 戴上時幫你聽見每個字怎麼念;摘下時,你手上就是世界上每一本英文書。
 > 基準口音 **British RP**。
+>
+> *本規格同步至引擎 `RULE_VERSION` **v1.7**。新記號:`ï ÿ`(/iː/)、`ë`(/eɪ/)、`ŵ`(/aʊ/ ow)、`ǵ ź`(/ʒ/)。*
 
 ---
 
@@ -65,29 +67,34 @@
 
 > ^ 形狀 ≈ IPA 的 ʌ;戴在原拼字母上以保可逆。
 
-### 長母音 / 字母名
+### 長母音 / 字母名（macron = 唸字母本名;diaeresis = 長音但非本名）
 | 音 | 拼 | 例 |
 |---|---|---|
-| /iː/ | ē | sēe |
+| /iː/ | ē（拼 e）/ **ï**（拼 i）/ **ÿ**（拼 y） | sēe; maçhïne, skï; abìlitÿ |
 | /uː/ | ö | föod |
-| /eɪ/ | ā | fāçe |
-| /aɪ/ | ī | prīçe |
+| /eɪ/ | ā（拼 a）/ **ë**（拼 e） | fāçe; tħëy, stëak, ëight |
+| /aɪ/ | ī（拼 i）/ ȳ（拼 y） | prīçe; mȳ |
 | /əʊ/ | ō | gōte |
 | /juː/ | ū | cūte |
+
+> **為什麼 i、e 要分 macron / diaeresis:** 字母 **i 的本名 = /aɪ/**(`ī`=price)、**e 的本名 = /iː/**(`ē`=see)。
+> 所以 /iː/ 拼在 i(machine)、/eɪ/ 拼在 e(they)若硬用 macron 會被誤讀。改規則:
+> **macron `ā ē ī ō ū` = 該字母的本名長音;diaeresis `ï ÿ`(=/iː/)、`ë`(=/eɪ/) = 長音但不是本名那個。** 兩者剝離都還原原字母。
 | /ɔː/ | ou 素顏（-ough）;他拼法保留原字母 | thought; more, born, law |
 | /ɑː/ | **å**（a-ring） | fåtħer, cår, låst, måsk |
 
 ### 雙母音
 | 音 | 拼 | 例 |
 |---|---|---|
-| /aʊ/ | oü | moüth, oütlook |
+| /aʊ/ | oü（拼 ou）/ **ŵ**（拼 ow） | moüth, oütlook; hoŵ, toŵn, alloŵ |
 | /ɔɪ/ | œ | chœice |
 | /ɪə/ | ea + 沉默 r | near |
 | /eə/ | ă + 沉默 r | squăre, despăir |
 | /ɜː/ | ~ 戴原母音 + 沉默 r | bĩrd, wõrd, hẽr, bũrn |
 
-### 母音相鄰（hiatus）
-> 兩母音分屬不同音節、需分開念時戴 **diaeresis ¨**（古典用法,如 naïve）。idea → **ïdèa**。注意 ĩ 已是 /ɜː/,hiatus 一律用 ï。
+### 母音相鄰（hiatus）—— 待重新指派
+> ⚠️ **更新(v1.5+):** 分音符 **`ï`/`ÿ` 已改派給 /iː/**(machine、ability)、**`ë` 派給 /eɪ/**(they)。
+> 原本 hiatus(idea 兩母音分讀)規劃用 `ï`,現已衝突。hiatus 在現行引擎**尚未實作**,日後若要做須另尋記號(不再用 ï),列入未竟邊角。
 
 ---
 
@@ -100,8 +107,8 @@
 | /ʃ/ | sh 素顏 / **çh** / **ť** / **ş** / **ç** | ship; çhef; relaťion; prèsşure; spèçial | 按拼法家族分帽（下） |
 | /tʃ/ | **ċh**（native）/ **çh**（法）/ **ṫ**（-ture） | ċhild; maçhine; tèmperaṫure | |
 | /k/（ch） | **čh** | čhemistry, sčhōol | 希臘 χ |
-| /dʒ/ | **ǧ**（軟 g）/ **ġ**（硬 g 例外）/ **ð**（dge）/ j 素顏 | màǧic; ġift; jûðge; jump | |
-| /ʒ/ | **ß** | meaßure, vißion, expōßure | 剝記號 ß→s |
+| /dʒ/ | **ǧ**（軟 g caron）/ **ġ**（硬 g 例外）/ **ð**（dge）/ j 素顏 | màǧic; ġift; jûðge; jump | ǧ=caron,別與 /ʒ/ 的 ǵ(acute) 混 |
+| /ʒ/ | **ß**（s 系）/ **ǵ**（拼 g）/ **ź**（拼 z） | meaßure, vißion, expōßure; garåǵe, beiǵe; aźure, seiźure | ß→s、ǵ→g、ź→z |
 | /z/（s 偷念） | **ś**（s-acute） | rīśiñg, plēaśe, rōśe, dogś | 剝記號 ś→s |
 | /s/ 軟 c | **ç** | çēase（/s/）; spèçial（/ʃ/） | ç=軟 c,值依位置 |
 | /k/ 硬 c | 素顏 | cat, cûp, cår | 預設,不標 |
@@ -127,6 +134,9 @@
 | /ʃ/ | **ş**（cedilla） |
 | /ʒ/ | **ß**（eszett） |
 > 同一字母 s,四音四記號(一素顏 + 三變體),全可剝離回 s。acute 專給 ś(/z/),不撞 grave(重音,只在母音)。複數 / 所有格 -s 清濁同理:dogś(/z/) vs cats(/s/)。
+
+> **濁擦音 acute 家族(統一記號邏輯):** acute 帽 = 「這個字母偷偷變成濁擦音」——`ś`(s→/z/)、`ǵ`(g→/ʒ/)、`ź`(z→/ʒ/)。
+> 與 `ǧ`(caron = /dʒ/)區隔:`ǵ`(garage /ʒ/) vs `ǧ`(magic /dʒ/)。
 
 ---
 
@@ -160,9 +170,16 @@
 
 ## 九、未竟邊角（不影響運作）
 
-- 法語 g 的 /ʒ/（genre, rouge）—— 罕見,暫歸 ß。
-- 縮寫撇號（don't, it's）—— 尚未系統化。（複數 / 所有格 -s 清濁已由 ś 解決。）
-- /ʊ/ 非 oo 拼法統一(put/full 目前素顏,靠 /ʌ/=^ 對比區分)。
+> **已解決(移出本節):** 法語/拼-g 的 /ʒ/ → `ǵ`(garage);拼-z 的 /ʒ/ → `ź`(azure);
+> /aʊ/ 拼 "ow" → `ŵ`(how);/ʃ//ʒ/ 的 -sion(`si`) → `şi`/`ßi`;`ss`→/ʃ/(pressure);
+> /iː/-on-i、/eɪ/-on-e 誤標 → `ï`/`ÿ`/`ë`。詳見引擎 `RULE_VERSION`(目前 v1.7)。
+
+**仍未竟:**
+- **/ʃ/ 拼 `xi`/`xu`**（anxious, complexion, bisexual）—— 該位置**沒有 s 字母**可戴 ş,硬標會憑空增字、破壞可剝離 → 素顏(真正物理極限,~0.9%)。
+- **縮寫撇號**（don't, it's）—— 尚未系統化。（複數 / 所有格 -s 清濁已由 ś 解決。）
+- **/ʊ/ 非 oo 拼法統一**（put/full 目前素顏,靠 /ʌ/=^ 對比區分）。
+- **hiatus**（idea 兩母音分讀）—— ï 已改派 /iː/,需另尋記號(見第四節)。
+- **專有名詞**(CMUdict 人名)—— 發音不規則,標記正確性存疑,建議過濾或另標。
 
 ---
 
@@ -175,10 +192,10 @@
 3. **/ʃ/ 家族**:sh 素顏;法 ch→çh;-tion→ť;ss/s→ş;ci→ç;-ture→ṫ。
 4. **/tʃ/**:native ch→ċh;希臘→čh。
 5. **/dʒ/**:軟 g→ǧ;硬 g 例外→ġ;dge→ð;j 素顏。
-6. **/ʒ/**→ß(剝→s)。**/z/（s 偷念）**→ś(剝→s)。**軟 c**→ç。**硬 c** 素顏。**/ŋ/**→ñ(k 前免標)。
-7. **母音**:短素顏;/ʌ/→^戴原母音;字母名 ā/ī/ō/ū/ē;/uː/→ö;/aʊ/→oü;/ɔɪ/→œ。
-8. **r 系**:/ɪə/→ea+沉默r;/eə/→ă+沉默r;/ɜː/→~戴原母音+沉默r;/ɑː/→å;/ɔː/(-ough)→ou 素顏,他拼法保留。
-9. **-ed**:音節/ɪd/→素顏;非音節→-eď。**hiatus**→ï。
+6. **/ʒ/**→ß(s系,剝→s)/ ǵ(拼g,剝→g)/ ź(拼z,剝→z)。**/z/（s 偷念）**→ś(剝→s)。**軟 c**→ç。**硬 c** 素顏。**/ŋ/**→ñ(k 前免標)。
+7. **母音**:短素顏;/ʌ/→^戴原母音;**長母音**:/eɪ/→ā(拼a)/ë(拼e);/aɪ/→ī(拼i)/ȳ(拼y);/iː/→ē(拼e)/ï(拼i)/ÿ(拼y);/əʊ/→ō;/juː/→ū;/uː/→ö;**/aʊ/→oü(拼ou)/ŵ(拼ow)**;/ɔɪ/→œ。
+8. **r 系**:/ɪə/→ea+沉默r;/eə/→ă+沉默r;/ɜː/→~戴原母音+沉默r(主、次重音皆標);/ɑː/→å;/ɔː/(-ough)→ou 素顏,他拼法保留。
+9. **-ed**:音節/ɪd/→素顏;非音節→-eď。(hiatus 暫無記號,見第四節。)
 10. **schwa**:非重音素顏母音預設念 schwa,不戴帽。沉默字母全留形不發音。
 
 ### 三密度
@@ -198,8 +215,8 @@
 ### 標題
 | 密度 | |
 |---|---|
-| 全標 | Four wāyś to breāk tħe bũrnoüt çȳcle |
-| 進階 | Four wayś to breāk tħe bũrnoüt çȳcle |
+| 全標 | Four wāyś to brëak tħe bũrnoüt çȳcle |
+| 進階 | Four wayś to brëak tħe bũrnoüt çȳcle |
 | 零標 | Four ways to break the burnout cycle |
 
 ### 首句
@@ -209,10 +226,10 @@
 | 進階 | Tħe apps are deśīgned to keep ūśerś swiping, and when unchècked, swiping is what weărś people down. |
 | 零標 | The apps are designed to keep users swiping, and when unchecked, swiping is what wears people down. |
 
-**這段示範到的:** ś(/z/:wayś, ūśerś, weărś)、ċh(unchecked)、ũ + oü(burnout)、ç + ȳ(cycle,軟 c + y=/aɪ/)、ā(break 的不規則 ea=/eɪ/)、deśīgneď(s=/z/ + 沉默 g 錨 + -eď)。
+**這段示範到的:** ś(/z/:wayś, ūśerś, weărś)、ċh(unchecked)、ũ + oü(burnout)、ç + ȳ(cycle,軟 c + y=/aɪ/)、ë(break 的 ea=/eɪ/ 戴在 e)、deśīgneď(s=/z/ + 沉默 g 錨 + -eď)。
 
 **進階版丟了什麼:** 規則長母音(keep)、首節重音的 û(unchecked 的 un-,/ʌ/拼 u 預設)、native ch 的點(ch=/tʃ/ 預設)、-ed 標記、-ing 的 ñ;**留下**會騙人的 ś、weăr、burn、cycle、break、濁 th。
 
-> **本文新撞到的邊角:** /aʊ/ 拼成 **"ow"**(down, now, how)。oü 當初是為 **"ou"** 拼法(mouth)設的,"ow" 沒 u 可標、且 ö 已佔 /uː/ → 暫素顏(down),列入未竟邊角待補。
+> **本文當初撞到、現已解決的邊角:** /aʊ/ 拼成 **"ow"**(down, now, how)。oü 當初只為 **"ou"** 拼法(mouth)設,"ow" 沒 u 可標 → **v1.7 改戴 `ŵ`(w-circumflex)在 w 上**(`hoŵ`, `toŵn`),剝離 ŵ→w。與 /əʊ/ 的 "ow"(low→`lōw`)靠音素(AW vs OW)自動區分,不衝突。
 
 *—— 單一合併檔結束。本檔取代先前的 v1(施工日誌)與 FINAL 草稿,為唯一正式版。*
