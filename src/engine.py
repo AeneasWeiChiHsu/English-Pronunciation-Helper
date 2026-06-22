@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.2"
+RULE_VERSION = "v1.4"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -175,11 +175,11 @@ def mark_vowel_letters(g, ph_list, stress, is_poly, letters_before, letters_afte
         out[vi]="œ" if base_letter=="o" else out[vi]; marked=True
         if "oi" in g: pass
     elif v=="ER":
-        # stressed ER -> /ɜː/ tilde ; unstressed -> schwa+r (素顏)
-        if stress==1:
+        # /ɜː/ tilde at primary OR secondary stress ; unstressed -> schwa+r (素顏)
+        if stress in (1,2):
             put(TILDE); marked=True
         else:
-            marked=False  # schwa, bare
+            marked=False  # ER0 schwa+r, bare
     elif v=="AH":
         if stress in (1,2):
             put(CIRC); marked=True            # /ʌ/ circumflex on its letter
@@ -282,8 +282,12 @@ def mark_consonant(gl, ps, path, idx):
         if "SH" in ps: return "ç"
         return "c"          # K -> bare
     if gl=="g":
-        if "JH" in ps or "ZH" in ps: return "ǧ"
-        return "g"          # G hard bare (exception dot ġ omitted for simplicity here)
+        if "ZH" in ps: return "ǵ"      # /ʒ/  garage, mirage, genre (g-acute: voiced fricative, cf. ś)
+        if "JH" in ps: return "ǧ"      # /dʒ/ magic (caron)
+        return "g"          # hard /g/ bare (exception dot ġ omitted for simplicity here)
+    if gl=="z":
+        if "ZH" in ps: return "ź"      # /ʒ/  azure, seizure (z-acute, same voiced-fricative family)
+        return "z"          # /z/ bare
     if gl=="ch":
         if "CH" in ps: return "ċh"
         if "K" in ps:  return "čh"
