@@ -41,8 +41,8 @@ CHECKS = [
                              lambda o: has_any(o, MACRONS) or has_any(o, "ïÿë")),
     ("/uː/ UW",              lambda s,p: "UW" in s,
                              lambda o: "ö" in o or has_any(o, MACRONS)),
-    ("/aʊ/ AW (ow-gap known)", lambda s,p: "AW" in s,
-                             lambda o: "ü" in o),
+    ("/aʊ/ AW",              lambda s,p: "AW" in s,
+                             lambda o: "ü" in o or "ŵ" in o),
 ]
 
 tally = [[0,0,[]] for _ in CHECKS]

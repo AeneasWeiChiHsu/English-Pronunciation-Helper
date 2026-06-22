@@ -6,7 +6,7 @@ Two densities: full / advanced. Outliers (multi-pron or low-confidence) -> 素�
 """
 import re
 
-RULE_VERSION = "v1.6"
+RULE_VERSION = "v1.7"
 
 VOWELS_AR = {"AA","AE","AH","AO","AW","AY","EH","ER","EY","IH","IY","OW","OY","UH","UW"}
 
@@ -175,9 +175,10 @@ def mark_vowel_letters(g, ph_list, stress, is_poly, letters_before, letters_afte
             elif "u" in g: out[g.index("u")]="ū"; marked=True   # approx
             else: put(MACRON_LETTERNAME); marked=True
     elif v=="AW":
-        # /aʊ/ : ou-> ü on u ; ow -> leave (gap) ; else mark first
+        # /aʊ/ : ou-> ü on u ; ow -> ŵ on w (how->hoŵ, town, now) ; else first vowel
         if "ou" in g: out[g.index("u")]="ü"; marked=True
-        else: marked=False   # ow / others: leave 素顏 (known gap)
+        elif "w" in g: out[g.index("w")]="ŵ"; marked=True   # ow -> ŵ (w-circumflex; peels to w)
+        else: marked=False
     elif v=="OY":
         out[vi]="œ" if base_letter=="o" else out[vi]; marked=True
         if "oi" in g: pass
