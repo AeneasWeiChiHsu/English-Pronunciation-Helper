@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "English Pronunciation-Guide Layer",
-  "version": "1.0",
+  "version": "1.8.0",
   "description": "Overlays a peelable RP pronunciation-guide spelling on English web pages. Hover any word to see the original.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
